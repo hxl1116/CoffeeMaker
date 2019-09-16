@@ -1,4 +1,4 @@
-import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
+import exceptions.InventoryException;
 
 /**
  * @author Sarah Heckman
@@ -77,7 +77,6 @@ public class CoffeeMaker {
     /**
      * Returns the change of a user's beverage purchase, or
      * the user's money if the beverage cannot be made
-     * @param r
      * @param amtPaid
      * @return int
      */

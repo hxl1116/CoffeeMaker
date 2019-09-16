@@ -1,4 +1,4 @@
-import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
+import exceptions.RecipeException;
 
 /**
  * @author   Sarah Heckman
