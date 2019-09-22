@@ -85,6 +85,38 @@ public class RecipeTest {
         assertFalse(r.equals(r2));
     }
 
+    @Test
+    public void equalsReturnsFalseWhenRecipeNull(){
+        Recipe r = new Recipe();
+        r.setName("Ham");
+
+        assertFalse(r.equals(null));
+    }
+
+    @Test
+    public void equalsReturnsFalseWhenRecipeIsDifferentObject(){
+        Recipe r = new Recipe();
+        r.setName("Ham");
+
+        assertFalse(r.equals(new Integer(2)));
+    }
+
+    @Test
+    public void ingredientsEqualsReturnsFalseWhenRecipeNull(){
+        Recipe r = new Recipe();
+        r.setName("Ham");
+
+        assertFalse(r.ingredientsEquals(null));
+    }
+
+    @Test
+    public void ingredientsEqualsReturnsFalseWhenRecipeIsDifferentObject(){
+        Recipe r = new Recipe();
+        r.setName("Ham");
+
+        assertFalse(r.ingredientsEquals(new Integer(2)));
+    }
+
 
     @AfterEach
     public void tearDown() {
