@@ -1,7 +1,6 @@
-import com.sun.istack.internal.NotNull;
-        import org.junit.jupiter.api.*;
-
-        import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 public class RecipeBookTest {
 
@@ -52,7 +51,7 @@ public class RecipeBookTest {
      */
     @Test
     public void addRecipeToEmptyBook() {
-        Recipe r = new Recipe();
+        Recipe r = mock(Recipe.class);
         boolean isAdded = recipeBook.addRecipe(r);
         assertTrue(isAdded,"Recipe " + r + " was not added.");
         assertEquals(recipeBook.getRecipes()[0],r,"The recipe was not added to the list.");
@@ -144,14 +143,15 @@ public class RecipeBookTest {
                 "Recipe was delete when [recipeToDelete] was above recipe book bounds.");
     }
 
-
     /**
      * Should update an already existing recipe.
      */
     @Test
     public void editRecipeUpdatesExistingRecipe() {
-        Recipe oldR = new Recipe();
-        Recipe newR = new Recipe();
+
+
+        Recipe oldR = mock(Recipe.class);
+        Recipe newR = mock(Recipe.class);
 
         oldR.setName("Ham");
         newR.setName("Meat");
@@ -161,8 +161,37 @@ public class RecipeBookTest {
         assertEquals(recipeBook.getRecipes()[0].getName(),newR.getName());
     }
 
+    /**
+     * Should not allow for recipes to be edited if the bounds
+     * are not within the arrays bounds.
+     */
+    @Test
+    public void editRecipeShouldHandleBadArgs() {
 
+        String name = recipeBook.editRecipe(-1,new Recipe());
+        assertNull(name, "Cannot edit a recipe at the location: -1");
 
+        String name2 = recipeBook.editRecipe(RecipeBook.NUM_RECIPES,new Recipe());
+        assertNull(name, "Cannot edit a recipe at the location : " + RecipeBook.NUM_RECIPES);
+    }
+
+    /**
+     * Should allow someone to edit a recipe even if it is null.
+     */
+    @Test
+    public void editRecipeShouldAllowEditOfNull() {
+        String name = recipeBook.editRecipe(0,new Recipe());
+        assertNull(name, "Cannot edit a recipe at the location: -1");
+    }
+
+    /**
+     * Should not be able to add a null recipe or invalid recipe.
+     */
+    @Test
+    public void editRecipeShouldNotBeNull() {
+        String name = recipeBook.editRecipe(0,null);
+        assertNull(name, "Cannot edit a recipe at the location: -1");
+    }
 
     @AfterEach
     public void tearDown() {
