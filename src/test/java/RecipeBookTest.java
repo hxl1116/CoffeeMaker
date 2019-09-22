@@ -1,6 +1,6 @@
+import exceptions.RecipeException;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 public class RecipeBookTest {
 
@@ -152,10 +152,31 @@ public class RecipeBookTest {
 
         oldR.setName("Ham");
         newR.setName("Meat");
+        try {
+            oldR.setAmtChocolate("1");
+            oldR.setAmtCoffee("1");
+            oldR.setAmtMilk("1");
+            oldR.setAmtSugar("1");
+            oldR.setPrice("1");
+
+            newR.setAmtChocolate("2");
+            newR.setAmtCoffee("3");
+            newR.setAmtMilk("4");
+            newR.setAmtSugar("5");
+            newR.setPrice("6");
+        } catch (RecipeException e) {
+            e.printStackTrace();
+        }
 
         recipeBook.addRecipe(oldR);
         recipeBook.editRecipe(0,newR);
-        assertEquals(recipeBook.getRecipes()[0].getName(),newR.getName());
+
+        Recipe r = recipeBook.getRecipes()[0];
+        assertEquals(r.getName(),newR.getName());
+        assertEquals(r.getAmtChocolate(),newR.getAmtChocolate());
+        assertEquals(r.getAmtCoffee(),newR.getAmtCoffee());
+        assertEquals(r.getAmtMilk(),newR.getAmtMilk());
+        assertEquals(r.getAmtSugar(),newR.getAmtSugar());
     }
 
     /**
@@ -176,7 +197,7 @@ public class RecipeBookTest {
      * Should allow someone to edit a recipe even if it is null.
      */
     @Test
-    public void editRecipeShouldNotAllowEditOfNull() {
+    public void editRecipeShouldNotAllowEditOfNullRecipe() {
         String name = recipeBook.editRecipe(0,new Recipe());
         assertNull(recipeBook.getRecipes()[0]);
     }
@@ -185,7 +206,7 @@ public class RecipeBookTest {
      * Should not be able to add a null recipe or invalid recipe.
      */
     @Test
-    public void editRecipeShouldNotBeNull() {
+    public void editedRecipeShouldNotBeNull() {
         recipeBook.addRecipe(new Recipe());
         recipeBook.editRecipe(0,null);
         assertNotNull(recipeBook.getRecipes()[0]);
