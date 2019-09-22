@@ -146,7 +146,7 @@ public class RecipeBookTest {
 
 
     /**
-     * Should update an already existing recipe.
+     * Should update an already existing recipe
      */
     @Test
     public void editRecipeUpdatesExistingRecipe() {
