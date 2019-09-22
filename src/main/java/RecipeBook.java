@@ -3,7 +3,7 @@ public class RecipeBook {
 	/** Array of recipes in coffee maker*/
 	private Recipe [] recipeArray;
 	/** Number of recipes in coffee maker */
-	private final int NUM_RECIPES = 4; 
+	public static final int NUM_RECIPES = 4;
 	
 	/**
 	 * Default constructor for a RecipeBook.
@@ -14,7 +14,6 @@ public class RecipeBook {
 	
 	/**
 	 * Returns the recipe array.
-	 * @param r
 	 * @return Recipe[]
 	 */
 	public synchronized Recipe[] getRecipes() {
@@ -22,6 +21,10 @@ public class RecipeBook {
 	}
 	
 	public synchronized boolean addRecipe(Recipe r) {
+
+		//Assume that the recipe is not null.
+		if(r==null){ return false; }
+
 		//Assume recipe doesn't exist in the array until 
 		//find out otherwise
 		boolean exists = false;
