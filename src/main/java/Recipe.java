@@ -176,6 +176,11 @@ public class Recipe {
         return result;
     }
 
+    /**
+     * If the object names are equal.
+     * @param obj
+     * @return true if the names are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -190,6 +195,37 @@ public class Recipe {
                 return false;
         } else if (!name.equals(other.name))
             return false;
+        return true;
+    }
+
+    /**
+     * If the names are equal and the ingredients are equal.
+     * @param obj
+     * @return true if the object fields are similar, false otherwise.
+     */
+    public boolean ingredientsEquals(Object obj){
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Recipe other = (Recipe) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+
+        if (getAmtChocolate() != other.getAmtChocolate()
+                || getAmtCoffee() != other.getAmtCoffee()
+                || getAmtMilk() != other.getAmtMilk()
+                || getAmtSugar() != other.getAmtSugar()
+                || getAmtChocolate() != other.getAmtChocolate()){
+            return false;
+        }
+
         return true;
     }
 
