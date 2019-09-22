@@ -56,6 +56,11 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String deleteRecipe(int recipeToDelete) {
+
+	    // Assumes that the recipeToDelete isn't outside the bounds of the
+        // recipe book array.
+	    if (recipeToDelete >= NUM_RECIPES || recipeToDelete < 0){ return null;}
+
 		if (recipeArray[recipeToDelete] != null) {
 			String recipeName = recipeArray[recipeToDelete].getName();
 			recipeArray[recipeToDelete] = null;
