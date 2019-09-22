@@ -91,13 +91,12 @@ public class RecipeBook {
     public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
 
         // Assumes that the [recipeToEdit] is within the [recipeBook].
-        if (recipeToEdit < 0 || recipeToEdit >= NUM_RECIPES){
+        if (recipeToEdit < 0 || recipeToEdit >= NUM_RECIPES || newRecipe == null){
             return null;
         }
 
         if (recipeArray[recipeToEdit] != null) {
             String recipeName = recipeArray[recipeToEdit].getName();
-            newRecipe.setName("");
             recipeArray[recipeToEdit] = newRecipe;
             return recipeName;
         } else {

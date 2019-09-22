@@ -51,7 +51,7 @@ public class RecipeBookTest {
      */
     @Test
     public void addRecipeToEmptyBook() {
-        Recipe r = mock(Recipe.class);
+        Recipe r = new Recipe();
         boolean isAdded = recipeBook.addRecipe(r);
         assertTrue(isAdded,"Recipe " + r + " was not added.");
         assertEquals(recipeBook.getRecipes()[0],r,"The recipe was not added to the list.");
@@ -136,7 +136,6 @@ public class RecipeBookTest {
      */
     @Test
     public void deleteOutsideBookBounds() {
-        recipeBook.addRecipe(new Recipe());
         assertNull(recipeBook.deleteRecipe(-1),
                 "Recipe was deleted when [recipeToDelete] was below zero");
         assertNull(recipeBook.deleteRecipe(RecipeBook.NUM_RECIPES),
@@ -148,10 +147,8 @@ public class RecipeBookTest {
      */
     @Test
     public void editRecipeUpdatesExistingRecipe() {
-
-
-        Recipe oldR = mock(Recipe.class);
-        Recipe newR = mock(Recipe.class);
+        Recipe oldR = new Recipe();
+        Recipe newR = new Recipe();
 
         oldR.setName("Ham");
         newR.setName("Meat");
@@ -166,22 +163,22 @@ public class RecipeBookTest {
      * are not within the arrays bounds.
      */
     @Test
-    public void editRecipeShouldHandleBadArgs() {
+    public void editRecipeOutOfBounds() {
 
         String name = recipeBook.editRecipe(-1,new Recipe());
         assertNull(name, "Cannot edit a recipe at the location: -1");
 
         String name2 = recipeBook.editRecipe(RecipeBook.NUM_RECIPES,new Recipe());
-        assertNull(name, "Cannot edit a recipe at the location : " + RecipeBook.NUM_RECIPES);
+        assertNull(name2, "Cannot edit a recipe at the location : " + RecipeBook.NUM_RECIPES);
     }
 
     /**
      * Should allow someone to edit a recipe even if it is null.
      */
     @Test
-    public void editRecipeShouldAllowEditOfNull() {
+    public void editRecipeShouldNotAllowEditOfNull() {
         String name = recipeBook.editRecipe(0,new Recipe());
-        assertNull(name, "Cannot edit a recipe at the location: -1");
+        assertNull(recipeBook.getRecipes()[0]);
     }
 
     /**
@@ -189,8 +186,9 @@ public class RecipeBookTest {
      */
     @Test
     public void editRecipeShouldNotBeNull() {
-        String name = recipeBook.editRecipe(0,null);
-        assertNull(name, "Cannot edit a recipe at the location: -1");
+        recipeBook.addRecipe(new Recipe());
+        recipeBook.editRecipe(0,null);
+        assertNotNull(recipeBook.getRecipes()[0]);
     }
 
     @AfterEach
