@@ -202,7 +202,7 @@ public class Inventory {
      * @param recipe
      * @return boolean
      */
-    protected synchronized boolean enoughIngredients(Recipe recipe) {
+    public synchronized boolean enoughIngredients(Recipe recipe) {
         if (recipe == null) throw new NullPointerException();
         else return Inventory.coffee >= recipe.getAmtCoffee() &&
                 Inventory.milk >= recipe.getAmtMilk() &&

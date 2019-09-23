@@ -8,18 +8,16 @@ import static org.mockito.Mockito.*;
 
 class InventoryTest {
     private static final String EXPECTED_TO_STRING = "Coffee: 15\r\nMilk: 15\r\nSugar: 15\r\nChocolate: 15\r\n";
+    private static final String COFFEE_EXCEPTION_MSG = "Units of coffee must be a positive integer";
     private static final String MILK_EXCEPTION_MSG = "Units of milk must be a positive integer";
     private static final String SUGAR_EXCEPTION_MSG = "Units of sugar must be a positive integer";
+    private static final String CHOCOLATE_EXCEPTION_MSG = "Units of chocolate must be a positive integer";
     private static final int DEFAULT_RESOURCE_AMT = 15;
     private static final int NO_RESOURCE_AMT = 0;
     private static final int LOW_RESOURCE_AMT = 5;
     private static final int HIGH_RESOURCE_AMT = 20;
-    private static final String MILK_AMT_INT = "5";
-    private static final String MILK_AMT_FLOAT = "5.5";
-    private static final String SUGAR_AMT_INT = "5";
-    private static final String SUGAR_AMT_FLOAT = "5.5";
-
-    private int default_amount = 15;
+    private static final String ADD_AMT_INT = "5";
+    private static final String ADD_AMT_FLOAT = "5.5";
 
     private static Inventory inventory;
 
@@ -41,9 +39,119 @@ class InventoryTest {
     }
 
     @Test
+    @Disabled
+    void testInventory() {
+        assertNotNull(inventory, "Inventory not created.");
+    }
+
+    @Test
+    void testGetCoffee() {
+        assertEquals(DEFAULT_RESOURCE_AMT, inventory.getCoffee(), "Should be " + DEFAULT_RESOURCE_AMT);
+    }
+
+    @Test
+    @Disabled
+    void testGetCoffeeNo() {
+        assertNotSame(DEFAULT_RESOURCE_AMT + 1, inventory.getCoffee(), "The inventory start with the default amount of Coffee.");
+    }
+
+    @Test
+    void testSetCoffeeToZero() {
+        inventory.setCoffee(NO_RESOURCE_AMT);
+
+        assertEquals(NO_RESOURCE_AMT, inventory.getCoffee(), "Should be " + NO_RESOURCE_AMT);
+    }
+
+    @Test
+    void testSetCoffeeWithPositiveInteger() {
+        inventory.setCoffee(HIGH_RESOURCE_AMT);
+
+        assertEquals(HIGH_RESOURCE_AMT, inventory.getCoffee(), "Should be " + HIGH_RESOURCE_AMT);
+    }
+
+    @Test
+    void testSetCoffeeWithNegativeInteger() {
+        inventory.setCoffee(-DEFAULT_RESOURCE_AMT);
+
+        assertEquals(DEFAULT_RESOURCE_AMT, inventory.getCoffee());
+    }
+
+    @Test
+    void testAddCoffeeWithPositiveInteger() {
+        try {
+            inventory.addCoffee(ADD_AMT_INT);
+        } catch (InventoryException e) {
+            // TODO: 9/22/2019 Modify default catch
+            e.printStackTrace();
+        }
+
+        assertEquals(HIGH_RESOURCE_AMT, inventory.getCoffee(), "Should be " + HIGH_RESOURCE_AMT);
+    }
+
+    @Test
+    void testAddCoffeeWithNegativeInteger() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addCoffee("-" + ADD_AMT_INT));
+
+        assertEquals(COFFEE_EXCEPTION_MSG, exception.getMessage(), "Should be " + COFFEE_EXCEPTION_MSG);
+    }
+
+    @Test
+    void testAddCoffeeWithPositiveFloat() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addCoffee(ADD_AMT_FLOAT));
+
+        assertEquals(COFFEE_EXCEPTION_MSG, exception.getMessage(), "Should be " + COFFEE_EXCEPTION_MSG);
+    }
+
+    @Test
+    void testAddCoffeeWithNegativeFloat() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addCoffee("-" + ADD_AMT_FLOAT));
+
+        assertEquals(COFFEE_EXCEPTION_MSG, exception.getMessage(), "Should be " + COFFEE_EXCEPTION_MSG);
+    }
+
+    @Test
+    void testAddCoffeeWithNull() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addCoffee(null));
+
+        assertEquals(COFFEE_EXCEPTION_MSG, exception.getMessage(), "Should be " + COFFEE_EXCEPTION_MSG);
+    }
+
+    @Test
+    void testGetMilk() {
+        assertEquals(DEFAULT_RESOURCE_AMT, inventory.getMilk(), "Wrong amount of Milk.");
+    }
+
+    @Test
+    @Disabled
+    void testGetMilkNo() {
+        assertNotSame(DEFAULT_RESOURCE_AMT + 1, inventory.getMilk(), "The inventory start with the default amount of Milk.");
+    }
+
+    @Test
+    void testSetMilkToZero() {
+        inventory.setMilk(NO_RESOURCE_AMT);
+
+        assertEquals(NO_RESOURCE_AMT, inventory.getMilk(), "Should be " + NO_RESOURCE_AMT);
+    }
+
+    @Test
+    void testSetMilkWithPositiveInteger() {
+        inventory.setMilk(HIGH_RESOURCE_AMT);
+
+        assertEquals(HIGH_RESOURCE_AMT, inventory.getMilk(), "Should be " + HIGH_RESOURCE_AMT);
+    }
+
+    @Test
+    void testSetMilkWithNegativeInteger() {
+        inventory.setMilk(-DEFAULT_RESOURCE_AMT);
+
+        assertEquals(DEFAULT_RESOURCE_AMT, inventory.getMilk(), "Should be " + DEFAULT_RESOURCE_AMT);
+    }
+
+    @Test
     void testAddMilkWithPositiveInteger() {
         try {
-            inventory.addMilk(MILK_AMT_INT);
+            inventory.addMilk(ADD_AMT_INT);
         } catch (InventoryException e) {
             e.printStackTrace();
         }
@@ -52,7 +160,7 @@ class InventoryTest {
     @Test
     void testAddMilkWithNegativeInteger() {
         Exception exception = assertThrows(InventoryException.class, () -> {
-            inventory.addMilk("-" + MILK_AMT_INT);
+            inventory.addMilk("-" + ADD_AMT_INT);
         });
 
         assertEquals(MILK_EXCEPTION_MSG, exception.getMessage());
@@ -61,7 +169,7 @@ class InventoryTest {
     @Test
     void testAddMilkWithPositiveFloat() {
         Exception exception = assertThrows(InventoryException.class, () -> {
-            inventory.addMilk(MILK_AMT_FLOAT);
+            inventory.addMilk(ADD_AMT_FLOAT);
         });
 
         assertEquals(MILK_EXCEPTION_MSG, exception.getMessage());
@@ -70,7 +178,7 @@ class InventoryTest {
     @Test
     void testAddMilkWithNegativeFloat() {
         Exception exception = assertThrows(InventoryException.class, () -> {
-            inventory.addMilk("-" + MILK_AMT_FLOAT);
+            inventory.addMilk("-" + ADD_AMT_FLOAT);
         });
 
         assertEquals(MILK_EXCEPTION_MSG, exception.getMessage());
@@ -86,6 +194,7 @@ class InventoryTest {
     }
 
     @Test
+    @Disabled
     void testAddMilkOnMultipleThreads() {
 
     }
@@ -93,6 +202,13 @@ class InventoryTest {
     @Test
     void testGetSugar() {
         assertEquals(DEFAULT_RESOURCE_AMT, inventory.getSugar(), "Should be " + DEFAULT_RESOURCE_AMT);
+    }
+
+    @Test
+    void testSetSugarToZero() {
+        inventory.setSugar(NO_RESOURCE_AMT);
+
+        assertEquals(NO_RESOURCE_AMT, inventory.getSugar(), "Should be " + NO_RESOURCE_AMT);
     }
 
     @Test
@@ -107,15 +223,10 @@ class InventoryTest {
         inventory.setSugar(-DEFAULT_RESOURCE_AMT);
 
         assertEquals(DEFAULT_RESOURCE_AMT, inventory.getSugar(), "Should be " + DEFAULT_RESOURCE_AMT);
-
-//        Exception exception = assertThrows(InventoryException.class, () -> {
-//            inventory.setSugar(Integer.parseInt("-" + SUGAR_AMT_INT));
-//        });
-//
-//        assertEquals(SUGAR_EXCEPTION_MSG, exception.getMessage());
     }
 
     @Test
+    @Disabled
     void testSetSugarOnMultipleThreads() {
 
     }
@@ -123,7 +234,7 @@ class InventoryTest {
     @Test
     void testAddSugarWithPositiveInteger() {
         try {
-            inventory.addSugar(SUGAR_AMT_INT);
+            inventory.addSugar(ADD_AMT_INT);
         } catch (InventoryException e) {
             e.printStackTrace();
         }
@@ -141,7 +252,7 @@ class InventoryTest {
     @Test
     void testAddSugarWithPositiveFloat() {
         Exception exception = assertThrows(InventoryException.class, () -> {
-            inventory.addSugar(SUGAR_AMT_FLOAT);
+            inventory.addSugar(ADD_AMT_FLOAT);
         });
 
         assertEquals(SUGAR_EXCEPTION_MSG, exception.getMessage());
@@ -150,7 +261,7 @@ class InventoryTest {
     @Test
     void testAddSugarWithNegativeFloat() {
         Exception exception = assertThrows(InventoryException.class, () -> {
-            inventory.addSugar("-" + SUGAR_AMT_FLOAT);
+            inventory.addSugar("-" + ADD_AMT_FLOAT);
         });
 
         assertEquals(SUGAR_EXCEPTION_MSG, exception.getMessage());
@@ -166,8 +277,81 @@ class InventoryTest {
     }
 
     @Test
+    @Disabled
     void testAddSugarOnMultipleThreads() {
 
+    }
+
+    @Test
+    void testGetChocolate() {
+        assertEquals(DEFAULT_RESOURCE_AMT, inventory.getChocolate(), "Should be " + DEFAULT_RESOURCE_AMT);
+    }
+
+    @Test
+    @Disabled
+    void testGetChocolateNo() {
+        assertNotSame(DEFAULT_RESOURCE_AMT + 1, inventory.getChocolate(), "The inventory start with the default amount of chocolate.");
+    }
+
+    @Test
+    void testSetChocolateToZero() {
+        inventory.setChocolate(NO_RESOURCE_AMT);
+
+        assertEquals(NO_RESOURCE_AMT, inventory.getChocolate(), "Should be " + NO_RESOURCE_AMT);
+    }
+
+    @Test
+    void testSetChocolateWithPositiveInteger() {
+        inventory.setChocolate(HIGH_RESOURCE_AMT);
+
+        assertEquals(HIGH_RESOURCE_AMT, inventory.getChocolate(), "Should be " + HIGH_RESOURCE_AMT);
+    }
+
+    @Test
+    void testSetChocolateWithNegativeInteger() {
+        inventory.setChocolate(-DEFAULT_RESOURCE_AMT);
+
+        assertEquals(DEFAULT_RESOURCE_AMT, inventory.getChocolate(), "Should be " + DEFAULT_RESOURCE_AMT);
+    }
+
+    @Test
+    void testAddChocolateWithPositiveInteger() {
+        try {
+            inventory.addChocolate(ADD_AMT_INT);
+        } catch (InventoryException e) {
+            // TODO: 9/22/2019 Modify default catch
+            e.printStackTrace();
+        }
+
+        assertEquals(HIGH_RESOURCE_AMT, inventory.getChocolate(), "Should be " + HIGH_RESOURCE_AMT);
+    }
+
+    @Test
+    void testAddChocolateWithNegativeInteger() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addChocolate("-" + ADD_AMT_INT));
+
+        assertEquals(CHOCOLATE_EXCEPTION_MSG, exception.getMessage(), "Should be " + CHOCOLATE_EXCEPTION_MSG);
+    }
+
+    @Test
+    void testAddChocolateWithPositiveFloat() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addChocolate(ADD_AMT_FLOAT));
+
+        assertEquals(CHOCOLATE_EXCEPTION_MSG, exception.getMessage(), "Should be " + CHOCOLATE_EXCEPTION_MSG);
+    }
+
+    @Test
+    void testAddChocolateWithNegativeFloat() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addChocolate("-" + ADD_AMT_FLOAT));
+
+        assertEquals(CHOCOLATE_EXCEPTION_MSG, exception.getMessage(), "Should be " + CHOCOLATE_EXCEPTION_MSG);
+    }
+
+    @Test
+    void testAddChocolateWithNull() {
+        Exception exception = assertThrows(InventoryException.class, () -> inventory.addChocolate(null));
+
+        assertEquals(CHOCOLATE_EXCEPTION_MSG, exception.getMessage(), "Should be " + CHOCOLATE_EXCEPTION_MSG);
     }
 
     @Test
@@ -236,6 +420,7 @@ class InventoryTest {
     }
 
     @Test
+    @Disabled
     void testEnoughIngredientsOnMultipleThreads() {
 
     }
@@ -280,193 +465,14 @@ class InventoryTest {
         assertEquals(EXPECTED_TO_STRING, inventory.toString(), String.format("Should be: %s", EXPECTED_TO_STRING));
     }
 
-    @Test
-    public void testInventory() {
-        assertNotNull(inventory, "Inventory not created.");
-    }
-
-    @Test
-    public void testGetChocolate() {
-        assertEquals(default_amount, inventory.getChocolate(), "The inventory did not start with the default amount of chocolate.");
-    }
-
-    @Test
-    public void testGetChocolateNo() {
-        assertNotSame(default_amount + 1, inventory.getChocolate(), "The inventory start with the default amount of chocolate.");
-    }
-
-    @Test
-    public void testSetPositiveChocolate() {
-        int new_amount = 10;
-        inventory.setChocolate(new_amount);
-        int testAmount = 0;
-
-        assertEquals(new_amount, testAmount, "The amount of chocolate in the inventory is incorrect.");
-    }
-
-    @Test
-    public void testSetZeroChocolate() {
-        int new_amount = 0;
-        inventory.setChocolate(new_amount);
-        int testAmount = 0;
-
-        assertEquals(new_amount, testAmount, "The amount of chocolate in the inventory is incorrect.");
-    }
-
-    @Test
-    public void testSetNegativeChocolate() {
-        int testAmount = 0;
-        int negative_amount = -1;
-        inventory.setChocolate(negative_amount);
-
-        assertEquals(default_amount, testAmount, "Amount of chocolate was set while trying to add a negative amount.");
-    }
-
-    @Test
-    public void testAddPositiveChocolate() {
-        int add = 10;
-        inventory.setChocolate(default_amount);
-        assertEquals(default_amount + add, inventory.getChocolate(), "Amount of chocolate not increased.");
-    }
-
-    @Test
-    public void testAddNegativeChocolate() {
-        inventory.setChocolate(default_amount);
-        boolean NegFlag = false;
-        String neg = "-1";
-        try {
-            inventory.addChocolate(neg);
-        } catch (InventoryException e) {
-            NegFlag = true;
-        }
-
-        assertTrue(NegFlag, "Exception not thrown for adding a negative amount of chocolate");
-    }
-
-    @Test
-    public void testAddNotANumberChocolate() {
-        inventory.setChocolate(default_amount);
-        boolean NanFlag = false;
-        String neg = "a";
-        try {
-            inventory.addChocolate(neg);
-        } catch (InventoryException e) {
-            NanFlag = true;
-        }
-        assertTrue(NanFlag, "Exception not thrown for adding a letters worth of chocolate.");
-    }
-
-    @Test
-    public void testGetCoffee() {
-        assertEquals(default_amount, inventory.getCoffee(), "Incorrect default amount of coffee.");
-    }
-
-    @Test
-    public void testGetCoffeeNo() {
-        assertNotSame(default_amount + 1, inventory.getCoffee(), "The inventory start with the default amount of Coffee.");
-    }
-
-    @Test
-    public void testSetPositiveCoffee() {
-        int new_amount = 10;
-        inventory.setCoffee(new_amount);
-        int testAmount = 0;
-
-        assertEquals(new_amount, testAmount, "Amount of coffee not set correctly.");
-    }
-
-    @Test
-    public void testSetZeroCoffee() {
-        int new_amount = 0;
-        inventory.setCoffee(new_amount);
-        int testAmount = 0;
-
-        assertEquals(new_amount, testAmount, "Amount of coffee not set correctly.");
-    }
-
-    @Test
-    public void testSetNegativeCoffee() {
-        int newAmount = -1;
-        inventory.setCoffee(newAmount);
-        int testAmount = 0;
-
-        assertEquals(default_amount, testAmount, "Negative amount of coffee set.");
-    }
-
-    @Test
-    public void testAddPositiveCoffee() {
-        int add = 5;
-        inventory.setCoffee(default_amount);
-        try {
-            inventory.addCoffee(String.valueOf(add));
-        } catch (InventoryException e) {
-            //TODO Auto created Catch
-        }
-        assertEquals(default_amount + add, inventory.getCoffee(), "Coffee amount not correct");
-    }
-
-    @Test
-    public void testAddCoffeeNonInt() {
-        boolean LetterFlag = false; //Checks if letter tries to be added
-        inventory.setCoffee(default_amount);
-        try {
-            inventory.addCoffee("a");
-        } catch (InventoryException e) {
-            LetterFlag = true;
-        }
-        assertTrue(LetterFlag, "Exception not thrown for adding a letter instead of a positive number.");
-    }
-
-    @Test
-    public void testAddCoffeeNegative() {
-        int add = -20;
-        boolean NegativeFlag = false; //Checks if negative number tries to be added
-        inventory.setCoffee(default_amount);
-        try {
-            inventory.addCoffee(String.valueOf(add));
-        } catch (InventoryException e) {
-            NegativeFlag = true;
-        }
-        assertTrue(NegativeFlag, "Exception not thrown for adding a negative number instead of a positive number.");
-    }
-
-    @Test
-    public void testGetMilk() {
-        assertEquals(default_amount, inventory.getMilk(), "Wrong amount of Milk.");
-    }
-
-    @Test
-    public void testGetMilkNo() {
-        assertNotSame(default_amount + 1, inventory.getMilk(), "The inventory start with the default amount of Milk.");
-    }
-
-    @Test
-    public void testSetMilkPos() {
-        int pos_amount = 10;
-        inventory.setMilk(pos_amount);
-        int testAmount = 0;
-
-        assertEquals(pos_amount, testAmount, "Amount of coffee not set correctly.");
-    }
-
-    @Test
-    public void testSetMilkNeg() {
-        int neg_amount = -10;
-        inventory.setMilk(neg_amount);
-        int testAmount = 0;
-
-        assertNotSame(neg_amount, testAmount, "Negative amount of coffee set.");
-    }
-
     @AfterEach
     void tearDown() {
         inventory = null;
+        reset(spyInventory, mockRecipe);
     }
 
     @AfterAll
     static void tearDownClass() {
-
+        mockRecipe = null;
     }
-
-
 }
