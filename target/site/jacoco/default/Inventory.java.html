@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Inventory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">coffee-maker</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Inventory.java</span></div><h1>Inventory.java</h1><pre class="source lang-java linenums">import exceptions.InventoryException;
+
+/**
+ * @author Sarah Heckman
+ * &lt;p&gt;
+ * Inventory for the coffee maker
+ */
+public class Inventory {
+    private static int coffee;
+    private static int milk;
+    private static int sugar;
+    private static int chocolate;
+
+    /**
+     * Creates a coffee maker inventory object and
+     * fills each item in the inventory with 15 units.
+     */
+<span class="fc" id="L18">    public Inventory() {</span>
+<span class="fc" id="L19">        setCoffee(15);</span>
+<span class="fc" id="L20">        setMilk(15);</span>
+<span class="fc" id="L21">        setSugar(15);</span>
+<span class="fc" id="L22">        setChocolate(15);</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Returns the current number of chocolate units in
+     * the inventory.
+     *
+     * @return int
+     */
+    public int getChocolate() {
+<span class="fc" id="L32">        return chocolate;</span>
+    }
+
+    /**
+     * Sets the number of chocolate units in the inventory
+     * to the specified amount.
+     *
+     * @param chocolate
+     */
+    public synchronized void setChocolate(int chocolate) {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (chocolate &gt;= 0) {</span>
+<span class="fc" id="L43">            Inventory.chocolate = chocolate;</span>
+        }
+
+<span class="fc" id="L46">    }</span>
+
+    /**
+     * Add the number of chocolate units in the inventory
+     * to the current amount of chocolate units.
+     *
+     * @param chocolate
+     * @throws InventoryException
+     */
+    public synchronized void addChocolate(String chocolate) throws InventoryException {
+<span class="fc" id="L56">        int amtChocolate = 0;</span>
+        try {
+<span class="fc" id="L58">            amtChocolate = Integer.parseInt(chocolate);</span>
+<span class="fc" id="L59">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L60">            throw new InventoryException(&quot;Units of chocolate must be a positive integer&quot;);</span>
+<span class="fc" id="L61">        }</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (amtChocolate &gt;= 0) {</span>
+<span class="fc" id="L63">            Inventory.chocolate += amtChocolate;</span>
+        } else {
+<span class="fc" id="L65">            throw new InventoryException(&quot;Units of chocolate must be a positive integer&quot;);</span>
+        }
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * Returns the current number of coffee units in
+     * the inventory.
+     *
+     * @return int
+     */
+    public int getCoffee() {
+<span class="fc" id="L76">        return coffee;</span>
+    }
+
+    /**
+     * Sets the number of coffee units in the inventory
+     * to the specified amount.
+     *
+     * @param coffee
+     */
+    public synchronized void setCoffee(int coffee) {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (coffee &gt;= 0) {</span>
+<span class="fc" id="L87">            Inventory.coffee = coffee;</span>
+        }
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Add the number of coffee units in the inventory
+     * to the current amount of coffee units.
+     *
+     * @param coffee
+     * @throws InventoryException
+     */
+    public synchronized void addCoffee(String coffee) throws InventoryException {
+<span class="fc" id="L99">        int amtCoffee = 0;</span>
+        try {
+<span class="fc" id="L101">            amtCoffee = Integer.parseInt(coffee);</span>
+<span class="fc" id="L102">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L103">            throw new InventoryException(&quot;Units of coffee must be a positive integer&quot;);</span>
+<span class="fc" id="L104">        }</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        if (amtCoffee &gt;= 0) {</span>
+<span class="fc" id="L106">            Inventory.coffee += amtCoffee;</span>
+        } else {
+<span class="fc" id="L108">            throw new InventoryException(&quot;Units of coffee must be a positive integer&quot;);</span>
+        }
+<span class="fc" id="L110">    }</span>
+
+    /**
+     * Returns the current number of milk units in
+     * the inventory.
+     *
+     * @return int
+     */
+    public int getMilk() {
+<span class="fc" id="L119">        return milk;</span>
+    }
+
+    /**
+     * Sets the number of milk units in the inventory
+     * to the specified amount.
+     *
+     * @param milk
+     */
+    public synchronized void setMilk(int milk) {
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        if (milk &gt;= 0) {</span>
+<span class="fc" id="L130">            Inventory.milk = milk;</span>
+        }
+<span class="fc" id="L132">    }</span>
+
+    /**
+     * Add the number of milk units in the inventory
+     * to the current amount of milk units.
+     *
+     * @param milk
+     * @throws InventoryException
+     */
+    public synchronized void addMilk(String milk) throws InventoryException {
+<span class="fc" id="L142">        int amtMilk = 0;</span>
+        try {
+<span class="fc" id="L144">            amtMilk = Integer.parseInt(milk);</span>
+<span class="fc" id="L145">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L146">            throw new InventoryException(&quot;Units of milk must be a positive integer&quot;);</span>
+<span class="fc" id="L147">        }</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (amtMilk &gt;= 0) {</span>
+<span class="fc" id="L149">            Inventory.milk += amtMilk;</span>
+        } else {
+<span class="fc" id="L151">            throw new InventoryException(&quot;Units of milk must be a positive integer&quot;);</span>
+        }
+<span class="fc" id="L153">    }</span>
+
+    /**
+     * Returns the current number of sugar units in
+     * the inventory.
+     *
+     * @return int
+     */
+    public int getSugar() {
+<span class="fc" id="L162">        return sugar;</span>
+    }
+
+    /**
+     * Sets the number of sugar units in the inventory
+     * to the specified amount.
+     *
+     * @param sugar
+     */
+    public synchronized void setSugar(int sugar) {
+<span class="fc bfc" id="L172" title="All 2 branches covered.">        if (sugar &gt;= 0) {</span>
+<span class="fc" id="L173">            Inventory.sugar = sugar;</span>
+        }
+<span class="fc" id="L175">    }</span>
+
+    /**
+     * Add the number of sugar units in the inventory
+     * to the current amount of sugar units.
+     *
+     * @param sugar
+     * @throws InventoryException
+     */
+    public synchronized void addSugar(String sugar) throws InventoryException {
+<span class="fc" id="L185">        int amtSugar = 0;</span>
+        try {
+<span class="fc" id="L187">            amtSugar = Integer.parseInt(sugar);</span>
+<span class="fc" id="L188">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L189">            throw new InventoryException(&quot;Units of sugar must be a positive integer&quot;);</span>
+<span class="fc" id="L190">        }</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">        if (amtSugar &gt;= 0) {</span>
+<span class="fc" id="L192">            Inventory.sugar += amtSugar;</span>
+        } else {
+<span class="fc" id="L194">            throw new InventoryException(&quot;Units of sugar must be a positive integer&quot;);</span>
+        }
+<span class="fc" id="L196">    }</span>
+
+    /**
+     * Returns true if there are enough ingredients to make
+     * the beverage.
+     *
+     * @param recipe
+     * @return boolean
+     */
+    public synchronized boolean enoughIngredients(Recipe recipe) {
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        if (recipe == null) throw new NullPointerException();</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">        else return Inventory.coffee &gt;= recipe.getAmtCoffee() &amp;&amp;</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">                Inventory.milk &gt;= recipe.getAmtMilk() &amp;&amp;</span>
+<span class="fc bfc" id="L209" title="All 2 branches covered.">                Inventory.sugar &gt;= recipe.getAmtSugar() &amp;&amp;</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">                Inventory.chocolate &gt;= recipe.getAmtChocolate();</span>
+    }
+
+    /**
+     * Removes the ingredients used to make the specified
+     * recipe.  Assumes that the user has checked that there
+     * are enough ingredients to make
+     *
+     * @param recipe
+     */
+    public synchronized boolean useIngredients(Recipe recipe) {
+<span class="fc bfc" id="L221" title="All 2 branches covered.">        if (recipe == null) throw new NullPointerException();</span>
+        else {
+<span class="fc bfc" id="L223" title="All 2 branches covered.">            if (enoughIngredients(recipe)) {</span>
+<span class="fc" id="L224">                Inventory.coffee -= recipe.getAmtCoffee();</span>
+<span class="fc" id="L225">                Inventory.milk -= recipe.getAmtMilk();</span>
+<span class="fc" id="L226">                Inventory.sugar -= recipe.getAmtSugar();</span>
+<span class="fc" id="L227">                Inventory.chocolate -= recipe.getAmtChocolate();</span>
+<span class="fc" id="L228">                return true;</span>
+<span class="fc" id="L229">            } else return false;</span>
+        }
+    }
+
+    /**
+     * Returns a string describing the current contents
+     * of the inventory.
+     *
+     * @return String
+     */
+    public String toString() {
+<span class="fc" id="L240">        return String.format(</span>
+<span class="fc" id="L241">                &quot;Coffee: %d%nMilk: %d%nSugar: %d%nChocolate: %d%n&quot;, getCoffee(), getMilk(), getSugar(), getChocolate()</span>
+        );
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

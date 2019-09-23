@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="InventoryTest" time="0.827" tests="55" errors="0" skipped="8" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Henry Larson\IdeaProjects\CoffeeMaker\target\test-classes;C:\Users\Henry Larson\IdeaProjects\CoffeeMaker\target\classes;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Henry Larson\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Henry Larson\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\mockito\mockito-core\3.0.0\mockito-core-3.0.0.jar;C:\Users\Henry Larson\.m2\repository\net\bytebuddy\byte-buddy\1.9.10\byte-buddy-1.9.10.jar;C:\Users\Henry Larson\.m2\repository\net\bytebuddy\byte-buddy-agent\1.9.10\byte-buddy-agent-1.9.10.jar;C:\Users\Henry Larson\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
+    <property name="sun.java.command" value="C:\Users\Henry Larson\AppData\Local\Temp\surefire491841357162883430\surefirebooter1487849501973614521.jar C:\Users\Henry Larson\AppData\Local\Temp\surefire491841357162883430 2019-09-22T22-32-52_665-jvmRun1 surefire3647697849353362817tmp surefire_03609135056026933135tmp"/>
+    <property name="surefire.test.class.path" value="C:\Users\Henry Larson\IdeaProjects\CoffeeMaker\target\test-classes;C:\Users\Henry Larson\IdeaProjects\CoffeeMaker\target\classes;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Henry Larson\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Henry Larson\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;C:\Users\Henry Larson\.m2\repository\org\mockito\mockito-core\3.0.0\mockito-core-3.0.0.jar;C:\Users\Henry Larson\.m2\repository\net\bytebuddy\byte-buddy\1.9.10\byte-buddy-1.9.10.jar;C:\Users\Henry Larson\.m2\repository\net\bytebuddy\byte-buddy-agent\1.9.10\byte-buddy-agent-1.9.10.jar;C:\Users\Henry Larson\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Henry Larson"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_181\jre"/>
+    <property name="basedir" value="C:\Users\Henry Larson\IdeaProjects\CoffeeMaker"/>
+    <property name="file.separator" value="\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\Henry Larson\AppData\Local\Temp\surefire491841357162883430\surefirebooter1487849501973614521.jar;C:\\Users\\Henry Larson\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.4\\org.jacoco.agent-0.8.4-runtime.jar"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_181\jre\classes"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_181-b13"/>
+    <property name="user.name" value="Henry Larson"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\endorsed"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Henry Larson\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Henry Larson\AppData\Local\Temp\"/>
+    <property name="java.version" value="1.8.0_181"/>
+    <property name="user.dir" value="C:\Users\Henry Larson\IdeaProjects\CoffeeMaker"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Java\jdk-9.0.4\bin;C:\Program Files\Apache\apache-maven-3.5.4\bin;C:\Program Files\SQLite\sqlite-tools-win32-x86-3250000;;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Users\Henry Larson\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Henry Larson\AppData\Local\Programs\Python\Python36-32\;C:\Users\Henry Larson\AppData\Local\Microsoft\WindowsApps;C:\Users\Henry Larson\AppData\Roaming\npm;;."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.181-b13"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="52.0"/>
+  </properties>
+  <testcase name="testEnoughIngredientsNotEnoughChocolate" classname="InventoryTest" time="0.113"/>
+  <testcase name="testGetChocolateNo" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testGetChocolateNo() is @Disabled"/>
+  </testcase>
+  <testcase name="testAddCoffeeWithNegativeInteger" classname="InventoryTest" time="0.004"/>
+  <testcase name="testAddSugarWithPositiveFloat" classname="InventoryTest" time="0.001"/>
+  <testcase name="testEnoughIngredientsNotEnoughSugar" classname="InventoryTest" time="0.001"/>
+  <testcase name="testAddMilkWithNull" classname="InventoryTest" time="0.002"/>
+  <testcase name="testGetSugar" classname="InventoryTest" time="0.001"/>
+  <testcase name="testAddChocolateWithNull" classname="InventoryTest" time="0.002"/>
+  <testcase name="testEnoughIngredientsWithNull" classname="InventoryTest" time="0.002"/>
+  <testcase name="testInventory" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testInventory() is @Disabled"/>
+  </testcase>
+  <testcase name="testAddSugarWithNull" classname="InventoryTest" time="0.001"/>
+  <testcase name="testEnoughIngredientsNotEnoughMilk" classname="InventoryTest" time="0.002"/>
+  <testcase name="testEnoughIngredientsPlentyResources" classname="InventoryTest" time="0.002"/>
+  <testcase name="testSetCoffeeWithPositiveInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testToString" classname="InventoryTest" time="0.001"/>
+  <testcase name="testAddMilkWithPositiveInteger" classname="InventoryTest" time="0"/>
+  <testcase name="testAddSugarWithNegativeFloat" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetCoffeeWithNegativeInteger" classname="InventoryTest" time="0.002"/>
+  <testcase name="testAddMilkWithNegativeInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetSugarToZero" classname="InventoryTest" time="0"/>
+  <testcase name="testAddCoffeeWithNull" classname="InventoryTest" time="0.001"/>
+  <testcase name="testAddSugarWithPositiveInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testGetMilk" classname="InventoryTest" time="0"/>
+  <testcase name="testEnoughIngredientsNotEnoughCoffee" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetMilkToZero" classname="InventoryTest" time="0"/>
+  <testcase name="testAddSugarWithNegativeInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testAddMilkWithPositiveFloat" classname="InventoryTest" time="0.001"/>
+  <testcase name="testAddChocolateWithPositiveFloat" classname="InventoryTest" time="0"/>
+  <testcase name="testSetChocolateToZero" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetCoffeeToZero" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetSugarOnMultipleThreads" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testSetSugarOnMultipleThreads() is @Disabled"/>
+  </testcase>
+  <testcase name="testUseIngredientsNotEnoughResources" classname="InventoryTest" time="0.012"/>
+  <testcase name="testAddSugarOnMultipleThreads" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testAddSugarOnMultipleThreads() is @Disabled"/>
+  </testcase>
+  <testcase name="testUseIngredientsSufficientResources" classname="InventoryTest" time="0.005"/>
+  <testcase name="testEnoughIngredientsOnMultipleThreads" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testEnoughIngredientsOnMultipleThreads() is @Disabled"/>
+  </testcase>
+  <testcase name="testAddMilkWithNegativeFloat" classname="InventoryTest" time="0.001"/>
+  <testcase name="testGetCoffeeNo" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testGetCoffeeNo() is @Disabled"/>
+  </testcase>
+  <testcase name="testSetSugarWithPositiveInteger" classname="InventoryTest" time="0"/>
+  <testcase name="testAddChocolateWithNegativeFloat" classname="InventoryTest" time="0.001"/>
+  <testcase name="testUseIngredientsWithNull" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetMilkWithPositiveInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetSugarWithNegativeInteger" classname="InventoryTest" time="0"/>
+  <testcase name="testSetMilkWithNegativeInteger" classname="InventoryTest" time="0"/>
+  <testcase name="testGetCoffee" classname="InventoryTest" time="0"/>
+  <testcase name="testAddCoffeeWithPositiveFloat" classname="InventoryTest" time="0"/>
+  <testcase name="testGetMilkNo" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testGetMilkNo() is @Disabled"/>
+  </testcase>
+  <testcase name="testAddChocolateWithPositiveInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testGetChocolate" classname="InventoryTest" time="0"/>
+  <testcase name="testEnoughIngredientsSufficientResources" classname="InventoryTest" time="0.002"/>
+  <testcase name="testAddMilkOnMultipleThreads" classname="InventoryTest" time="0">
+    <skipped message="void InventoryTest.testAddMilkOnMultipleThreads() is @Disabled"/>
+  </testcase>
+  <testcase name="testAddChocolateWithNegativeInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetChocolateWithPositiveInteger" classname="InventoryTest" time="0"/>
+  <testcase name="testAddCoffeeWithPositiveInteger" classname="InventoryTest" time="0.001"/>
+  <testcase name="testAddCoffeeWithNegativeFloat" classname="InventoryTest" time="0.001"/>
+  <testcase name="testSetChocolateWithNegativeInteger" classname="InventoryTest" time="0"/>
+</testsuite>
