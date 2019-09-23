@@ -91,7 +91,7 @@ public class RecipeBook {
     public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
 
         // Assumes that the [recipeToEdit] is within the [recipeBook].
-        if (recipeToEdit < 0 || recipeToEdit >= NUM_RECIPES || newRecipe == null){
+        if (recipeToEdit < 0 || recipeToEdit >= NUM_RECIPES || newRecipe == null) {
             return null;
         }
 

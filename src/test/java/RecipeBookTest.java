@@ -1,5 +1,6 @@
 import exceptions.RecipeException;
 import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RecipeBookTest {
@@ -23,7 +24,7 @@ public class RecipeBookTest {
      */
     @Test
     public void recipeBookLengthIsFour() {
-        assertEquals(recipeBook.getRecipes().length,RecipeBook.NUM_RECIPES,
+        assertEquals(recipeBook.getRecipes().length, RecipeBook.NUM_RECIPES,
                 "The recipe book doesn't have the correct length of recipes.");
     }
 
@@ -33,7 +34,7 @@ public class RecipeBookTest {
      */
     @Test
     public void checkRecipeBookNotNull() {
-        assertNotNull(recipeBook.getRecipes(),"The recipe book is null.");
+        assertNotNull(recipeBook.getRecipes(), "The recipe book is null.");
     }
 
     /**
@@ -42,7 +43,7 @@ public class RecipeBookTest {
     @Test
     public void addNullRecipe() {
         boolean isAdded = recipeBook.addRecipe(null);
-        assertFalse(isAdded,"Cannot add null recipe to recipe book.");
+        assertFalse(isAdded, "Cannot add null recipe to recipe book.");
     }
 
     /**
@@ -53,8 +54,8 @@ public class RecipeBookTest {
     public void addRecipeToEmptyBook() {
         Recipe r = new Recipe();
         boolean isAdded = recipeBook.addRecipe(r);
-        assertTrue(isAdded,"Recipe " + r + " was not added.");
-        assertEquals(recipeBook.getRecipes()[0],r,"The recipe was not added to the list.");
+        assertTrue(isAdded, "Recipe " + r + " was not added.");
+        assertEquals(recipeBook.getRecipes()[0], r, "The recipe was not added to the list.");
     }
 
     /**
@@ -63,9 +64,9 @@ public class RecipeBookTest {
      */
     @Test
     public void addRecipeToFullBook() {
-        for(int i = 0; i < RecipeBook.NUM_RECIPES; i++){
+        for (int i = 0; i < RecipeBook.NUM_RECIPES; i++) {
             Recipe r = new Recipe();
-            r.setName(""+i);
+            r.setName("" + i);
             recipeBook.addRecipe(r);
         }
 
@@ -73,12 +74,12 @@ public class RecipeBookTest {
         newRecipe.setName("new");
         boolean isAdded = recipeBook.addRecipe(newRecipe);
 
-        assertFalse(isAdded,"Recipe was added to full recipe book when it shouldn't have.");
+        assertFalse(isAdded, "Recipe was added to full recipe book when it shouldn't have.");
 
         // None of the recipes should have the name "new"
         // if they do, then that means the above recipe was added.
-        for(Recipe r : recipeBook.getRecipes()){
-            assertFalse(r.getName().equals("new"),"Unwanted recipe was in recipe book:" + r);
+        for (Recipe r : recipeBook.getRecipes()) {
+            assertFalse(r.getName().equals("new"), "Unwanted recipe was in recipe book:" + r);
         }
     }
 
@@ -90,7 +91,7 @@ public class RecipeBookTest {
         Recipe r = new Recipe();
         recipeBook.addRecipe(r);
         boolean isAdded = recipeBook.addRecipe(r);
-        assertFalse(isAdded,"Duplicated recipe added to recipe book.");
+        assertFalse(isAdded, "Duplicated recipe added to recipe book.");
     }
 
     /**
@@ -102,7 +103,7 @@ public class RecipeBookTest {
         r.setName("alex");
         recipeBook.addRecipe(r);
 
-        assertEquals(recipeBook.getRecipes()[0].getName(),"alex",
+        assertEquals(recipeBook.getRecipes()[0].getName(), "alex",
                 "Recipe book didn't contain proper recipe.");
     }
 
@@ -115,9 +116,9 @@ public class RecipeBookTest {
         r.setName("alex");
         recipeBook.addRecipe(r);
 
-        assertEquals(recipeBook.deleteRecipe(0),"alex",
+        assertEquals(recipeBook.deleteRecipe(0), "alex",
                 "Incorrect recipe was removed");
-        assertNull(recipeBook.getRecipes()[0],"Recipe still exists after removal.");
+        assertNull(recipeBook.getRecipes()[0], "Recipe still exists after removal.");
     }
 
     /**
@@ -125,7 +126,7 @@ public class RecipeBookTest {
      */
     @Test
     public void deleteRecipeCantDeleteNothing() {
-        assertNull(recipeBook.deleteRecipe(0),"Deleted recipe when" +
+        assertNull(recipeBook.deleteRecipe(0), "Deleted recipe when" +
                 "no recipes were present.");
     }
 
@@ -169,14 +170,14 @@ public class RecipeBookTest {
         }
 
         recipeBook.addRecipe(oldR);
-        recipeBook.editRecipe(0,newR);
+        recipeBook.editRecipe(0, newR);
 
         Recipe r = recipeBook.getRecipes()[0];
-        assertEquals(r.getName(),newR.getName());
-        assertEquals(r.getAmtChocolate(),newR.getAmtChocolate());
-        assertEquals(r.getAmtCoffee(),newR.getAmtCoffee());
-        assertEquals(r.getAmtMilk(),newR.getAmtMilk());
-        assertEquals(r.getAmtSugar(),newR.getAmtSugar());
+        assertEquals(r.getName(), newR.getName());
+        assertEquals(r.getAmtChocolate(), newR.getAmtChocolate());
+        assertEquals(r.getAmtCoffee(), newR.getAmtCoffee());
+        assertEquals(r.getAmtMilk(), newR.getAmtMilk());
+        assertEquals(r.getAmtSugar(), newR.getAmtSugar());
     }
 
     /**
@@ -186,10 +187,10 @@ public class RecipeBookTest {
     @Test
     public void editRecipeOutOfBounds() {
 
-        String name = recipeBook.editRecipe(-1,new Recipe());
+        String name = recipeBook.editRecipe(-1, new Recipe());
         assertNull(name, "Cannot edit a recipe at the location: -1");
 
-        String name2 = recipeBook.editRecipe(RecipeBook.NUM_RECIPES,new Recipe());
+        String name2 = recipeBook.editRecipe(RecipeBook.NUM_RECIPES, new Recipe());
         assertNull(name2, "Cannot edit a recipe at the location : " + RecipeBook.NUM_RECIPES);
     }
 
@@ -198,7 +199,7 @@ public class RecipeBookTest {
      */
     @Test
     public void editRecipeShouldNotAllowEditOfNullRecipe() {
-        String name = recipeBook.editRecipe(0,new Recipe());
+        String name = recipeBook.editRecipe(0, new Recipe());
         assertNull(recipeBook.getRecipes()[0]);
     }
 
@@ -208,7 +209,7 @@ public class RecipeBookTest {
     @Test
     public void editedRecipeShouldNotBeNull() {
         recipeBook.addRecipe(new Recipe());
-        recipeBook.editRecipe(0,null);
+        recipeBook.editRecipe(0, null);
         assertNotNull(recipeBook.getRecipes()[0]);
     }
 

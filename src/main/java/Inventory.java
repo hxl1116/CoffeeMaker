@@ -6,7 +6,6 @@ import exceptions.InventoryException;
  * Inventory for the coffee maker
  */
 public class Inventory {
-
     private static int coffee;
     private static int milk;
     private static int sugar;
@@ -189,7 +188,7 @@ public class Inventory {
         } catch (NumberFormatException e) {
             throw new InventoryException("Units of sugar must be a positive integer");
         }
-        if (amtSugar <= 0) {
+        if (amtSugar >= 0) {
             Inventory.sugar += amtSugar;
         } else {
             throw new InventoryException("Units of sugar must be a positive integer");
@@ -200,24 +199,15 @@ public class Inventory {
      * Returns true if there are enough ingredients to make
      * the beverage.
      *
-     * @param r
+     * @param recipe
      * @return boolean
      */
-    protected synchronized boolean enoughIngredients(Recipe r) {
-        boolean isEnough = true;
-        if (Inventory.coffee < r.getAmtCoffee()) {
-            isEnough = false;
-        }
-        if (Inventory.milk < r.getAmtMilk()) {
-            isEnough = false;
-        }
-        if (Inventory.sugar < r.getAmtSugar()) {
-            isEnough = false;
-        }
-        if (Inventory.chocolate < r.getAmtChocolate()) {
-            isEnough = false;
-        }
-        return isEnough;
+    protected synchronized boolean enoughIngredients(Recipe recipe) {
+        if (recipe == null) throw new NullPointerException();
+        else return Inventory.coffee >= recipe.getAmtCoffee() &&
+                Inventory.milk >= recipe.getAmtMilk() &&
+                Inventory.sugar >= recipe.getAmtSugar() &&
+                Inventory.chocolate >= recipe.getAmtChocolate();
     }
 
     /**
@@ -225,17 +215,18 @@ public class Inventory {
      * recipe.  Assumes that the user has checked that there
      * are enough ingredients to make
      *
-     * @param r
+     * @param recipe
      */
-    public synchronized boolean useIngredients(Recipe r) {
-        if (enoughIngredients(r)) {
-            Inventory.coffee += r.getAmtCoffee();
-            Inventory.milk -= r.getAmtMilk();
-            Inventory.sugar -= r.getAmtSugar();
-            Inventory.chocolate -= r.getAmtChocolate();
-            return true;
-        } else {
-            return false;
+    public synchronized boolean useIngredients(Recipe recipe) {
+        if (recipe == null) throw new NullPointerException();
+        else {
+            if (enoughIngredients(recipe)) {
+                Inventory.coffee -= recipe.getAmtCoffee();
+                Inventory.milk -= recipe.getAmtMilk();
+                Inventory.sugar -= recipe.getAmtSugar();
+                Inventory.chocolate -= recipe.getAmtChocolate();
+                return true;
+            } else return false;
         }
     }
 
@@ -246,19 +237,8 @@ public class Inventory {
      * @return String
      */
     public String toString() {
-        StringBuffer buf = new StringBuffer();
-        buf.append("Coffee: ");
-        buf.append(getCoffee());
-        buf.append("\n");
-        buf.append("Milk: ");
-        buf.append(getMilk());
-        buf.append("\n");
-        buf.append("Sugar: ");
-        buf.append(getSugar());
-        buf.append("\n");
-        buf.append("Chocolate: ");
-        buf.append(getChocolate());
-        buf.append("\n");
-        return buf.toString();
+        return String.format(
+                "Coffee: %d%nMilk: %d%nSugar: %d%nChocolate: %d%n", getCoffee(), getMilk(), getSugar(), getChocolate()
+        );
     }
 }
