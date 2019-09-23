@@ -1,7 +1,5 @@
 Main.class
 CoffeeMaker.class
 Inventory.class
-exceptions\RecipeException.class
-exceptions\InventoryException.class
 RecipeBook.class
 Recipe.class

@@ -194,7 +194,11 @@ public class RecipeTest {
         recp.setName("testName");
         assertEquals("testName", recp.getName());
     }
-
+    @Test
+    public void testSetNameNull() {
+        recp.setName(null);
+        assertEquals("", recp.getName());
+    }
     @Test
     public void testGetName() {
         recp.setName("testName");
@@ -353,8 +357,26 @@ public class RecipeTest {
 
         assertFalse(r.ingredientsEquals(new Integer(2)));
     }
-
-
+    @Test
+    public void ingredientsFalseWhenNameIsNull() {
+        Recipe r = new Recipe();
+        Recipe r2 = new Recipe();
+        r2.setName("literally anything");
+        assertFalse(r.ingredientsEquals(r2));
+    }
+    @Test
+    public void equalsFalseWhenNameIsNull() {
+        Recipe r = new Recipe();
+        Recipe r2 = new Recipe();
+        r2.setName("literally anything");
+        assertFalse(r2.equals(r));
+    }
+    @Test
+    public void ingredientsEqualsWhenTheyreTheSame() {
+        Recipe r = new Recipe();
+        recp.setName("literally anything");
+        assertTrue(r.ingredientsEquals(r));
+    }
     @AfterEach
     public void tearDown() {
 

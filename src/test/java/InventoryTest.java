@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class InventoryTest {
-    private static final String EXPECTED_TO_STRING = "Coffee: 15\r\nMilk: 15\r\nSugar: 15\r\nChocolate: 15\r\n";
+    private static final String EXPECTED_TO_STRING = String.format("Coffee: %d%nMilk: %d%nSugar: %d%nChocolate: %d%n", 15, 15, 15, 15);
     private static final String COFFEE_EXCEPTION_MSG = "Units of coffee must be a positive integer";
     private static final String MILK_EXCEPTION_MSG = "Units of milk must be a positive integer";
     private static final String SUGAR_EXCEPTION_MSG = "Units of sugar must be a positive integer";
@@ -39,7 +39,7 @@ class InventoryTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     void testInventory() {
         assertNotNull(inventory, "Inventory not created.");
     }
@@ -122,7 +122,7 @@ class InventoryTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     void testGetMilkNo() {
         assertNotSame(DEFAULT_RESOURCE_AMT + 1, inventory.getMilk(), "The inventory start with the default amount of Milk.");
     }
@@ -288,7 +288,6 @@ class InventoryTest {
     }
 
     @Test
-    @Disabled
     void testGetChocolateNo() {
         assertNotSame(DEFAULT_RESOURCE_AMT + 1, inventory.getChocolate(), "The inventory start with the default amount of chocolate.");
     }

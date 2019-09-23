@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: InventoryTest
 -------------------------------------------------------------------------------
-Tests run: 55, Failures: 0, Errors: 0, Skipped: 8, Time elapsed: 0.827 s - in InventoryTest
+Tests run: 55, Failures: 0, Errors: 0, Skipped: 5, Time elapsed: 1.345 s - in InventoryTest
